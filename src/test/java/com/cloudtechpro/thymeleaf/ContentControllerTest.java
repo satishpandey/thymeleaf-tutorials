@@ -24,13 +24,20 @@ public class ContentControllerTest {
     @Test
     public void displayDefaultName() throws Exception {
         mockMvc.perform(get("/display-name"))
-                .andExpect(content().string(containsString("Hello, Cloudtechpro!")));
+                .andExpect(content().string(containsString("Cloudtechpro")));
     }
 
     @Test
     public void displayParameterName() throws Exception {
         mockMvc.perform(get("/display-name").param("name", "Satish"))
-                .andExpect(content().string(containsString("Hello, Satish!")));
+                .andExpect(content().string(containsString("Satish")));
     }
 
+    @Test
+    public void displayMessage() throws Exception {
+        mockMvc.perform(get("/display-message"))
+                .andExpect(content().string(containsString("Message loaded")));
+    }
+    
+    
 }
