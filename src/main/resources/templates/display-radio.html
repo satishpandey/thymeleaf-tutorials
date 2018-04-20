@@ -1,0 +1,36 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Cloudtechpro: Radio Button Group</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+</head>
+<body>
+
+	<h2>Please select a month and submit</h2>
+	<form th:object="${monthGroup}" th:action="@{/radiobox-submit}"
+		method="post">
+		<div th:each="month, stat: ${monthGroup.months}">
+			<input type="radio" th:field="*{months[__${stat.index}__].checked}"
+				value="true" th:text="${month.name}">
+		</div>
+		<input type="submit" value="Submit">
+	</form>
+
+	<h2>Checked month</h2>
+	<div th:each="month, stat: ${monthGroup.months}" th:if="${month.checked}">
+		<span th:text="${month.name}"></span>
+	</div>
+	
+<script>
+    $(document).ready(
+        function (e) {
+            $("input[type=radio]").change(
+                function () {
+                    $('input[type=radio]:checked').not(this)
+                        .prop('checked', false);
+                });
+        });
+</script>
+</body>
+</html>
