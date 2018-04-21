@@ -10,7 +10,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.cloudtechpro.thymeleaf.model.MonthGroup;
 
 @Controller
-public class RadioboxController {
+public class FormController {
 
     @GetMapping("/radiobox-display")
     public ModelAndView radioBoxDisplay(@ModelAttribute("monthGroup") MonthGroup monthGroup, BindingResult bindingResult, ModelAndView modelAndView) {	
@@ -25,4 +25,16 @@ public class RadioboxController {
 	return modelAndView;
     }
 
+    @GetMapping("/checkbox-display")
+    public ModelAndView checkBoxDisplay(@ModelAttribute("monthGroup") MonthGroup monthGroup, BindingResult bindingResult, ModelAndView modelAndView) {	
+	modelAndView.addObject("monthGroup", new MonthGroup());
+	modelAndView.setViewName("display-checkbox");
+	return modelAndView;
+    }
+
+    @PostMapping("/checkbox-submit")
+    public ModelAndView checkBoxSubmit(@ModelAttribute("monthGroup") MonthGroup monthGroup, BindingResult bindingResult, ModelAndView modelAndView) {
+	modelAndView.setViewName("display-checkbox");
+	return modelAndView;
+    }
 }
