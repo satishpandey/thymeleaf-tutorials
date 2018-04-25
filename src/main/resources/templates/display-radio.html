@@ -17,9 +17,21 @@
 		<input type="submit" value="Submit">
 	</form>
 
-	<h2>Checked month</h2>
+	<h2>Selected Months Season</h2>
 	<div th:each="month, stat: ${monthGroup.months}" th:if="${month.checked}">
-		<span th:text="${month.name}"></span>
+		<div th:switch="${month.name}">
+			<span th:case="#{month.dec}">It's Winter in </span>
+			<span th:case="#{month.jan}">It's Winter in </span>
+			<span th:case="#{month.feb}">It's Winter in </span>
+			<span th:case="#{month.mar}">It's Spring in </span>
+			<span th:case="#{month.apr}">It's Spring in </span>
+			<span th:case="#{month.may}">It's Spring in </span>
+			<span th:case="#{month.jun}">It's Summer in </span>
+			<span th:case="#{month.jul}">It's Summer in </span>
+			<span th:case="#{month.aug}">It's Summer in </span>
+			<span th:case="*">It's Autumn in </span>
+			<b><span th:text="${month.name}"></span></b>
+		</div>
 	</div>
 	
 <script>

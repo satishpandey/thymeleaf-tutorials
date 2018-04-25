@@ -4,19 +4,20 @@ public class Month {
 
     private String name;
     private Boolean checked;
-    
-    public Month() {}
-    
+
+    public Month() {
+    }
+
     public Month(String name) {
 	this.name = name;
     }
 
     public String getName() {
-        return name;
+	return name;
     }
 
     public void setName(String name) {
-        this.name = name;
+	this.name = name;
     }
 
     public Boolean getChecked() {
@@ -26,4 +27,33 @@ public class Month {
     public void setChecked(Boolean checked) {
 	this.checked = checked;
     }
+
+    public boolean isWinter() {
+	if (name.equalsIgnoreCase("December") || name.equalsIgnoreCase("January") || name.equalsIgnoreCase("February")) {
+	    return true;
+	}
+	return false;
+    }
+
+    public boolean isSpring() {
+	if (name.equalsIgnoreCase("December") || name.equalsIgnoreCase("January") || name.equalsIgnoreCase("February")) {
+	    return true;
+	}
+	return false;
+    }
+
+    public boolean isSummer() {
+	if (name.equalsIgnoreCase("December") || name.equalsIgnoreCase("January") || name.equalsIgnoreCase("February")) {
+	    return true;
+	}
+	return false;
+    }
+
+    public boolean isAutumn() {
+	if (name.equalsIgnoreCase("December") || name.equalsIgnoreCase("January") || name.equalsIgnoreCase("February")) {
+	    return true;
+	}
+	return false;
+    }
+
 }

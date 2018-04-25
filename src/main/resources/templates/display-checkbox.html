@@ -3,6 +3,16 @@
 <head>
 <title>Cloudtechpro: Checkbox Example</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<style type="text/css">
+.checked{
+	font-weight: bold;
+	color: green;
+}
+
+.unchecked{
+	font-weight: normal;
+}
+</style>
 </head>
 <body>
 
@@ -10,15 +20,39 @@
 	<form th:object="${monthGroup}" th:action="@{/checkbox-submit}"
 		method="post">
 		<div th:each="month, stat: ${monthGroup.months}">
-			<input type="checkbox" th:field="*{months[__${stat.index}__].checked}"
-				th:text="${month.name}">
+			<input type="checkbox" th:field="*{months[__${stat.index}__].checked}">
+			<label th:text="${month.name}" th:class="${month.checked}? 'checked' : 'unchecked'"></label>
 		</div>
 		<input type="submit" value="Submit">
 	</form>
 
-	<h2>Selected months</h2>
-	<div th:each="month, stat: ${monthGroup.months}" th:if="${month.checked}">
+	<div th:if="${monthGroup.monthSelected}">
+		<h2>Selected months</h2>
+		<div th:each="month, stat: ${monthGroup.months}" th:if="${month.checked}">
+			<span th:text="${month.name}"></span>
+		</div>
+	</div>
+	
+	<h2>Unselected months</h2>
+	<div th:each="month, stat: ${monthGroup.months}" th:unless="${month.checked}">
 		<span th:text="${month.name}"></span>
+	</div>
+	
+	<h2>Selected Months Seasons</h2>
+	<div th:each="month, stat: ${monthGroup.months}" th:if="${month.checked}">
+		<div th:switch="${month.name}">
+			<span th:case="#{month.dec}">It's Winter in </span>
+			<span th:case="#{month.jan}">It's Winter in </span>
+			<span th:case="#{month.feb}">It's Winter in </span>
+			<span th:case="#{month.mar}">It's Spring in </span>
+			<span th:case="#{month.apr}">It's Spring in </span>
+			<span th:case="#{month.may}">It's Spring in </span>
+			<span th:case="#{month.jun}">It's Summer in </span>
+			<span th:case="#{month.jul}">It's Summer in </span>
+			<span th:case="#{month.aug}">It's Summer in </span>
+			<span th:case="*">It's Autumn in </span>
+			<b><span th:text="${month.name}"></span></b>
+		</div>
 	</div>
 	
 </body>
